@@ -18,6 +18,7 @@ class ParsedTorrent
     private ?string $language = null;
     private ?string $resolution = null;
     private ?string $audio = null;
+    private ?string $fileExtension = null;
     private array $excess = [];
 
     public function __construct(string $originalName)
@@ -165,6 +166,17 @@ class ParsedTorrent
     /**
      * Convert to array
      */
+    public function setFileExtension(?string $fileExtension): self
+    {
+        $this->fileExtension = $fileExtension;
+        return $this;
+    }
+
+    public function getFileExtension(): ?string
+    {
+        return $this->fileExtension;
+    }
+
     public function toArray(): array
     {
         return [
@@ -179,6 +191,7 @@ class ParsedTorrent
             'language' => $this->language,
             'resolution' => $this->resolution,
             'audio' => $this->audio,
+            'fileExtension' => $this->fileExtension,
             'excess' => $this->excess,
         ];
     }

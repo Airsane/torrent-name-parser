@@ -55,6 +55,11 @@ class TitlePattern implements PatternInterface
             $title = preg_replace('/\b' . preg_quote($parsedTorrent->getAudio(), '/') . '\b/i', ' ', $title);
         }
         
+        // Remove file extension
+        if ($parsedTorrent->getFileExtension() !== null) {
+            $title = preg_replace('/\.' . preg_quote($parsedTorrent->getFileExtension(), '/') . '$/i', '', $title);
+        }
+        
         // Remove common quality terms that might not be captured by quality pattern
         $commonTerms = ['UHD', 'HD', 'SD', '4K', 'Atmos'];
         foreach ($commonTerms as $term) {

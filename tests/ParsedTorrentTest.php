@@ -47,6 +47,7 @@ class ParsedTorrentTest extends TestCase
             'language' => null,
             'resolution' => null,
             'audio' => null,
+            'fileExtension' => null,
             'excess' => [],
         ];
         
@@ -71,6 +72,7 @@ class ParsedTorrentTest extends TestCase
             'language' => null,
             'resolution' => null,
             'audio' => null,
+            'fileExtension' => null,
             'excess' => [],
         ]);
         

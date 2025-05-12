@@ -66,6 +66,40 @@ class TorrentNameParserTest extends TestCase
                     'episode' => 1,
                 ],
             ],
+            'Movie with file extension' => [
+                'The.Matrix.1999.1080p.BluRay.x264.mkv',
+                [
+                    'title' => 'The Matrix',
+                    'year' => 1999,
+                    'quality' => '1080p',
+                    'source' => 'BluRay',
+                    'codec' => 'x264',
+                    'fileExtension' => 'mkv',
+                ],
+            ],
+            'TV show with file extension' => [
+                'Breaking.Bad.S01E01.720p.HDTV.x264.mp4',
+                [
+                    'title' => 'Breaking Bad',
+                    'quality' => '720p',
+                    'source' => 'HDTV',
+                    'codec' => 'x264',
+                    'season' => 1,
+                    'episode' => 1,
+                    'fileExtension' => 'mp4',
+                ],
+            ],
+            'Movie with duplicate quality values' => [
+                'The.Matrix.1999.1080p.BluRay.1080p.x264-GROUP',
+                [
+                    'title' => 'The Matrix',
+                    'year' => 1999,
+                    'quality' => '1080p',
+                    'source' => 'BluRay',
+                    'codec' => 'x264',
+                    'group' => 'GROUP',
+                ],
+            ],
             'Movie with resolution and audio' => [
                 'Inception.2010.2160p.UHD.BluRay.x265.TrueHD.Atmos-RELEASE',
                 [
@@ -116,5 +150,11 @@ class TorrentNameParserTest extends TestCase
     {
         $parsed = $this->parser->parse('The.Matrix.1999.1080p.BluRay.x264-GROUP');
         $this->assertSame('GROUP', $parsed->getGroup());
+    }
+
+    public function testGetFileExtension(): void
+    {
+        $parsed = $this->parser->parse('The.Matrix.1999.1080p.BluRay.x264.mkv');
+        $this->assertSame('mkv', $parsed->getFileExtension());
     }
 }

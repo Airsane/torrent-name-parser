@@ -49,6 +49,7 @@ class TorrentNameParser
                ->addPattern(new Patterns\SourcePattern())
                ->addPattern(new Patterns\EpisodePattern())
                ->addPattern(new Patterns\GroupPattern())
+               ->addPattern(new Patterns\FileExtensionPattern()) // File extension should be before title
                ->addPattern(new Patterns\TitlePattern()); // Title should be last as it's a fallback
         
         return $parser;

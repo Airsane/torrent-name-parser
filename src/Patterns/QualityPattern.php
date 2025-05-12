@@ -23,6 +23,7 @@ class QualityPattern implements PatternInterface
 
     public function parse(string $torrentName, ParsedTorrent $parsedTorrent): void
     {
+        // Prioritize qualities in the order they are defined
         foreach (self::QUALITIES as $quality) {
             if (preg_match('/\b' . preg_quote($quality, '/') . '\b/i', $torrentName)) {
                 $parsedTorrent->setQuality($quality);
@@ -32,7 +33,10 @@ class QualityPattern implements PatternInterface
                     $parsedTorrent->setResolution($quality);
                 }
                 
-                break;
+                // We found a quality, so we can stop searching.
+                // Since we're checking qualities in priority order (from highest to lowest),
+                // this ensures we use the highest quality value even if multiple qualities exist.
+                return;
             }
         }
     }
