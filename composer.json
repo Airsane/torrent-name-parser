@@ -1,0 +1,30 @@
+{
+    "name": "airsane/torrent-name-parser",
+    "description": "Torrent filename parser",
+    "type": "library",   
+    "license": "MIT",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Airsane\\TorrentNameParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Airsane\\TorrentNameParser\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Airsane",
+            "email": "Airsane@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    }
+}
